@@ -37,7 +37,7 @@
 		width: 22vw;
 		height: 26vw;
 		border-radius: 50%/50%;
-		border: solid 1px white;
+		box-shadow: 0 0 1vh 2vh #351C69;
 	}
 	.chat-dream-date {
 		margin-top: 22px;
