@@ -11,7 +11,7 @@
 	<div class="cmp-pic-gallery">
 		<div class="pic-gallery-list">
 			<div class="pic-gallery-forward"></div>
-			<img :class="['gallery-pic', 'pic-'+index]" v-for="(src, index) in curList" :src="src" v-show="!!src" />
+			<img @click="$emit('pic-selected')" :class="['gallery-pic', 'pic-'+index]" v-for="(src, index) in curList" :src="src" v-show="!!src" />
 			<div class="pic-gallery-backward"></div>
 		</div>
 	</div>
