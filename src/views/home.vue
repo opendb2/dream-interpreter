@@ -22,8 +22,8 @@
 	}
 	.home-illustration {
 		margin-top: 5vh;
-		width: 35vh;
-		height: 35vh;
+		width: 40vh;
+		height: 40vh;
 		border-radius: 50%;
 	}
 	.home-slogan {
