@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-	<img class="home-illustration" src="../assets/logo.png"/>
+	<img class="home-illustration" src="../assets/home-illustration.png"/>
 	<div class="home-slogan">I dream of painting</div>
 	<div class="home-slogan">and then I paint my dream</div>
 	<div class="home-slogan-sub">-Vincent Van Gogh</div>
