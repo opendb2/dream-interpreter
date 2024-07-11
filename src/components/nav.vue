@@ -1,6 +1,8 @@
 <template>
 	<div class="cmp-nav">
-		<div class="cmp-nav-center"><img class="nav-logo" src='../assets/logo.png'/>DreamStory</div>
+		<div class="cmp-nav-center">
+		    <img class="nav-logo" src='../assets/nav-logo.png' alt="Logo" @click="goTo('/')"/>
+	</div>
 		<div class="cmp-nav-right">
 			<div @click="goTo('/gen')">Create</div>
 			<div @click="goTo('/chat')">Chat</div>
@@ -21,19 +23,21 @@
 
 <style>
 	.nav-logo {
-		width: 48px;
-		height: 48px;
+		width: 232px;
+		height: 44px;
+		cursor: pointer;
 	}
 	.cmp-nav {
 		color: white;
 		position: relative;
 		/* background-color: #030038; */
-		height: 132px;
+		height: 126px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 	}
 	.cmp-nav-center {
+		flex: 1;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -47,6 +51,7 @@
 		justify-content: center;
 		div {
 			flex: 1;
+			text-align: center;
 		}
 	}
 </style>

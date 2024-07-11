@@ -32,66 +32,66 @@ console.log('gen');
 }
 .illustraion-1 {
 	position: absolute;
-	top: 20vh;
-	left: 13vw;
-	width: 7vw;
-	height: 7vw;
-	background-image: url('../assets/logo.png');
+	top: 13vh;
+	left: 16vw;
+	width: 11vw;
+	height: 11vw;
+	background-image: url('../assets/illustraion-1.png');
 	background-size: cover;
 }
 .illustraion-2 {
 	position: absolute;
-	top: 25vh;
+	top: 20vh;
 	left: 44vw;
-	width: 7vw;
-	height: 7vw;
-	background-image: url('../assets/logo.png');
+	width: 12vw;
+	height: 12vw;
+	background-image: url('../assets/illustraion-2.png');
 	background-size: cover;
 }
 .illustraion-3 {
 	position: absolute;
 	top: 22vh;
 	left: 75vw;
-	width: 10vw;
-	height: 10vw;
-	background-image: url('../assets/logo.png');
+	width: 12vw;
+	height: 12vw;
+	background-image: url('../assets/illustraion-3.png');
 	background-size: cover;
 }
 .illustraion-4 {
 	position: absolute;
-	top: 55vh;
-	left: 6vw;
-	width: 6vw;
-	height: 6vw;
-	background-image: url('../assets/logo.png');
+	top: 45vh;
+	left: 2vw;
+	width: 12vw;
+	height: 12vw;
+	background-image: url('../assets/illustraion-4.png');
 	background-size: cover;
 	transform: rotate(-7deg);
 }
 .illustraion-5 {
 	position: absolute;
-	top: 80vh;
-	left: 15vw;
-	width: 7vw;
-	height: 7vw;
-	background-image: url('../assets/logo.png');
+	top: 72vh;
+	left: 24vw;
+	width: 12vw;
+	height: 12vw;
+	background-image: url('../assets/illustraion-5.png');
 	background-size: cover;
 }
 .illustraion-6 {
 	position: absolute;
-	top: 78vh;
-	left: 52vw;
-	width: 7vw;
-	height: 7vw;
-	background-image: url('../assets/logo.png');
+	top: 76vh;
+	left: 57vw;
+	width: 12vw;
+	height: 12vw;
+	background-image: url('../assets/illustraion-6.png');
 	background-size: cover;
 }
 .illustraion-7 {
 	position: absolute;
-	top: 62vh;
-	left: 85vw;
-	width: 10vw;
-	height: 10vw;
-	background-image: url('../assets/logo.png');
+	top: 60vh;
+	left: 83vw;
+	width: 12vw;
+	height: 12vw;
+	background-image: url('../assets/illustraion-7.png');
 	background-size: cover;
 }
 </style>
