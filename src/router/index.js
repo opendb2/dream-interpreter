@@ -17,8 +17,8 @@ const router = createRouter({
 	{ path: '/gen', name: 'gen', component: Gen },
 	{ path: '/chat', name: 'chat', component: Chat },
 	{ path: '/jour', name: 'jour', component: Jour },
-	{ path: '/search', name: 'search', Search },
-	{ path: '/tour', name: 'tour', Tour },
+	{ path: '/search', name: 'search', component: Search },
+	{ path: '/tour', name: 'tour', component: Tour },
   ]
 })
 
