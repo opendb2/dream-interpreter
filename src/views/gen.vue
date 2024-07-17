@@ -1,6 +1,15 @@
 <template>
   <div class="page-gen">
-	  <input class="gen-text" type="text" placeholder="what was your last dream?"/>
+    <div class="gen-text-wrapper">
+	  <input v-model="promote" class="gen-text" type="text" placeholder="what was your last dream?"/>
+	  <el-button
+	      type="primary"
+	      class="gen-btn" 
+		  @click="go"
+	    >
+	      Go
+	  </el-button>
+	</div>
   </div>
   <div class='illustraion-1'></div>
   <div class='illustraion-2'></div>
@@ -12,7 +21,51 @@
 </template>
 
 <script setup>
-console.log('gen');
+import { reactive } from "vue" 
+import { useRouter } from 'vue-router'
+import { ElNotification, ElLoading } from 'element-plus'
+import { genStore } from '@/stores/genStore'
+
+const router = useRouter();
+let gen = genStore();
+let promote = reactive('');
+
+const go = () => {
+	console.log('promote:', promote);
+	if(!promote) {
+		ElNotification({
+		    title: 'Warning',
+		    message: 'input is empty',
+		    type: 'warning',
+		  })
+		return;
+	}
+	const loading = ElLoading.service({
+	    lock: true,
+	    text: 'Loading',
+	    background: 'rgba(0, 0, 0, 0.7)',
+	  })
+    // fetch("/api/gen-img", {
+	fetch("/api/test-img", {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({promote}),
+    }).then((response) => response.json())
+      .then((data) => {
+		loading.close();
+        console.log("Success:", data);
+		let { imgUrl } = data.data;
+		gen.setImgUrl(imgUrl);
+		gen.setPromote(promote);
+		router.push('./chat')
+      })
+      .catch((error) => {
+		loading.close();
+        console.error("Error:", error);
+      });
+};
 </script>
 
 <style>
@@ -21,6 +74,7 @@ console.log('gen');
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	position: relative;
 }
 .gen-text {
 	width: 60vw;
@@ -93,5 +147,19 @@ console.log('gen');
 	height: 12vw;
 	background-image: url('../assets/illustraion-7.png');
 	background-size: cover;
+}
+.gen-text-wrapper {
+  position: relative;
+}
+.gen-btn {
+    position: absolute;
+	border-radius: 16px;
+	border: solid 0px;
+    width: 32px;
+    height: 32px;
+    margin-top: 2.5vh;
+    right: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 </style>

@@ -1,9 +1,9 @@
 <template>
   <div class="chat-page">
 	<div class="chat-page-left">
-		<img class="chat-dream-pic" src="../assets/logo.png"/>
+		<img class="chat-dream-pic" :src="imgUrl"/>
 		<div class="chat-dream-date">2024-06-30</div>
-		<div class="chat-dream-name">a girl with a unicon under the sky</div>
+		<div class="chat-dream-name">{{ promote }}</div>
 	</div>
 	<div class="chat-page-right">
 		<div class="chat-page-messages"></div>
@@ -15,7 +15,10 @@
 </template>
 
 <script setup>
+import { genStore } from '@/stores/genStore'
 
+let { imgUrl, promote } = genStore();
+console.log(imgUrl);
 </script>
 
 <style>

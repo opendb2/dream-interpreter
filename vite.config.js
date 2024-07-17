@@ -20,5 +20,14 @@ export default defineConfig({
   		.set('@page', resolve('./src/pages'))
   		.set('@cmp', resolve('./src/components'))
   		
-  }
+  },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:7000',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '/api'),
+      },
+    }
+  },
 })
