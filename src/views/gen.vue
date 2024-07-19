@@ -20,7 +20,7 @@
   <div class='illustraion-7'></div>
 </template>
 
-<script setup>
+<script setup>a
 import { reactive } from "vue" 
 import { useRouter } from 'vue-router'
 import { ElNotification, ElLoading } from 'element-plus'
@@ -45,8 +45,8 @@ const go = () => {
 	    text: 'Loading',
 	    background: 'rgba(0, 0, 0, 0.7)',
 	  })
-    // fetch("/api/gen-img", {
-	fetch("/api/test-img", {
+    fetch("/api/gen-img", {
+	// fetch("/api/test-img", {
       method: "POST", // or 'PUT'
       headers: {
         "Content-Type": "application/json",
