@@ -20,7 +20,7 @@
   <div class='illustraion-7'></div>
 </template>
 
-<script setup>a
+<script setup>
 import { reactive } from "vue" 
 import { useRouter } from 'vue-router'
 import { ElNotification, ElLoading } from 'element-plus'
