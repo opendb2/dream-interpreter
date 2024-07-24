@@ -52,6 +52,7 @@
 		div {
 			flex: 1;
 			text-align: center;
+			margin: 0 10px;
 		}
 	}
 </style>
