@@ -26,15 +26,15 @@
 	<div class="chat-page-right">
 		<div class="chat-page-messages">
 			<div v-for="item in msgList">
-				<div v-if="item.Role == 'assistant'" class="chat-content chat-assistant">
+				<div v-if="item.role == 'assistant'" class="chat-content chat-assistant">
 					<img class="chat-icon" src="../assets/home-illustration 1.png"/>
 					<div class="chat-msg">
-						{{item.Content}}
+						{{item.content}}
 					</div>
 				</div>	
-				<div v-if="item.Role == 'user'" class="chat-content chat-user">
+				<div v-if="item.role == 'user'" class="chat-content chat-user">
 					<div class="chat-msg">
-						{{item.Content}}
+						{{item.content}}
 					</div>
 					<img class="chat-icon" src="../assets/home-illustration 2.png"/>
 				</div>
@@ -68,7 +68,7 @@ import { reactive } from 'vue';
 import { useRouter  } from 'vue-router';
 import { genStore } from '@/stores/genStore';
 import { ElLoading, ElNotification } from 'element-plus';
-import { initMsgs, wrapperCustomMsg, appendMsg } from '@/utils/msg';
+import { initMsgs, wrapperCustomMsg, wrapperAssistantMsg, appendMsg } from '@/utils/msg';
 
 let router = useRouter();
 let { imgUrl, promote } = genStore();
@@ -88,7 +88,7 @@ const send = () => {
 		text: 'Loading',
 		background: 'rgba(0, 0, 0, 0.7)',
 	  });
-	fetch("/api/gen-chat", {
+	fetch("/api/gen-gpt-chat", {
 	  method: "POST", // or 'PUT'
 	  headers: {
 	    "Content-Type": "application/json",
@@ -99,7 +99,7 @@ const send = () => {
 		loading.close();
 	    console.log("Success:", data);
 		let { suggest } = data.data;
-		msgList.push(appendMsg((suggest)));
+		msgList.push(appendMsg(wrapperAssistantMsg(suggest)));
 	  })
 	  .catch((error) => {
 		loading.close();
