@@ -51,21 +51,34 @@
 			</el-button>
 		</div>
 	</div>
+	 <el-dialog
+	    v-model="shareDialog.show"
+	    title="Tips"
+	    width="500"
+	    :before-close="handleClose"
+	  >
+		<div>u can send following address to ur friends:</div>
+	    <span>{{shareDialog.shareUrl}}</span>
+	  </el-dialog>
   </div>
 </template>
 
 <script setup>
 import { reactive } from 'vue';
+import { useRouter  } from 'vue-router';
 import { genStore } from '@/stores/genStore';
 import { ElLoading, ElNotification } from 'element-plus';
 import { initMsgs, wrapperCustomMsg, appendMsg } from '@/utils/msg';
 
+let router = useRouter();
 let { imgUrl, promote } = genStore();
 let msgList = reactive([]);
 let chatContent = reactive('');
 let dreamId = reactive(-1);
+let shareDialog = reactive({show: false, shareUrl: ''})
 initMsgs.map(item => msgList.push(item));
 console.log('msgList:', msgList);
+console.log(router.getRoutes());
 const send = () => {
 	msgList.push(appendMsg(wrapperCustomMsg(chatContent)));
 	console.log('send:msgList:', msgList);
@@ -112,15 +125,16 @@ const share = () => {
 	  headers: {
 	    "Content-Type": "application/json",
 	  },
-	  body: JSON.stringify({dreamId, prompt: promote, img: imgUrl, messages: msgList, suggest: ''}),
+	  body: JSON.stringify({dream_id: dreamId, prompt: promote, img: imgUrl, messages: msgList, suggest: ''}),
 	}).then((response) => response.json())
 	  .then((data) => {
 		loading.close();
 	    console.log("Success:", data);
 		let { id } = data.data;
+		shareDialog.shareUrl = `${location.host}/share/${id}`;
+		shareDialog.show = true;
 	  })
 	  .catch((error) => {
-		loading.close();
 	    console.error("Error:", error);
 	  });
 }
