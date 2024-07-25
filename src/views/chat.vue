@@ -2,8 +2,26 @@
   <div class="chat-page">
 	<div class="chat-page-left">
 		<img class="chat-dream-pic" :src="imgUrl"/>
-		<div class="chat-dream-date">2024-06-30</div>
+		<div class="chat-dream-date">
+			{{ new Date().getFullYear() }} {{"-"}} {{ new Date().getMonth()+1 }} {{"-"}} {{ new Date().getDate() }}
+		</div>
 		<div class="chat-dream-name">{{ promote }}</div>
+		<div>
+			<el-button
+			    type="primary"
+			    class="" 
+					  @click="save"
+			  >
+			    save
+			</el-button>
+			<el-button
+			    type="primary"
+			    class="" 
+					  @click="share"
+			  >
+			    share
+			</el-button>
+		</div>
 	</div>
 	<div class="chat-page-right">
 		<div class="chat-page-messages">
@@ -39,12 +57,13 @@
 <script setup>
 import { reactive } from 'vue';
 import { genStore } from '@/stores/genStore';
-import { ElLoading } from 'element-plus'
-import { initMsgs, wrapperCustomMsg, appendMsg } from '@/utils/msg'
+import { ElLoading, ElNotification } from 'element-plus';
+import { initMsgs, wrapperCustomMsg, appendMsg } from '@/utils/msg';
 
 let { imgUrl, promote } = genStore();
 let msgList = reactive([]);
 let chatContent = reactive('');
+let dreamId = reactive(-1);
 initMsgs.map(item => msgList.push(item));
 console.log('msgList:', msgList);
 const send = () => {
@@ -68,6 +87,66 @@ const send = () => {
 	    console.log("Success:", data);
 		let { suggest } = data.data;
 		msgList.push(appendMsg((suggest)));
+	  })
+	  .catch((error) => {
+		loading.close();
+	    console.error("Error:", error);
+	  });
+}
+const share = () => {
+	if(dreamId < 0) {
+		ElNotification({
+		    title: 'Warning',
+		    message: 'pls save dream before u share',
+		    type: 'warning',
+		})
+		return;
+	}
+	const loading = ElLoading.service({
+		lock: true,
+		text: 'Loading',
+		background: 'rgba(0, 0, 0, 0.7)',
+	  });
+	fetch("/api/share", {
+	  method: "POST", // or 'PUT'
+	  headers: {
+	    "Content-Type": "application/json",
+	  },
+	  body: JSON.stringify({dreamId, prompt: promote, img: imgUrl, messages: msgList, suggest: ''}),
+	}).then((response) => response.json())
+	  .then((data) => {
+		loading.close();
+	    console.log("Success:", data);
+		let { id } = data.data;
+	  })
+	  .catch((error) => {
+		loading.close();
+	    console.error("Error:", error);
+	  });
+}
+const save = () => {
+	const loading = ElLoading.service({
+		lock: true,
+		text: 'Loading',
+		background: 'rgba(0, 0, 0, 0.7)',
+	  });
+	fetch("/api/dream-update", {
+	  method: "POST", // or 'PUT'
+	  headers: {
+	    "Content-Type": "application/json",
+	  },
+	  body: JSON.stringify({prompt: promote, img: imgUrl, messages: msgList, suggest: ''}),
+	}).then((response) => response.json())
+	  .then((data) => {
+		loading.close();
+	    console.log("Success:", data);
+		let { id } = data.data;
+		dreamId = id;
+		ElNotification({
+		    title: 'Success',
+		    message: 'Dream save success',
+		    type: 'success',
+		})
 	  })
 	  .catch((error) => {
 		loading.close();

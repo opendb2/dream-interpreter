@@ -5,6 +5,7 @@ import Chat from '@/views/chat.vue'
 import Jour from '@/views/journal.vue'
 import Search from '@/views/search.vue'
 import Tour from '@/views/tour.vue'
+import Share from '@/views/ChatShare.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,6 +20,7 @@ const router = createRouter({
 	{ path: '/jour', name: 'jour', component: Jour },
 	{ path: '/search', name: 'search', component: Search },
 	{ path: '/tour', name: 'tour', component: Tour },
+	{ path: '/share/:id', name: 'tour', component: Share },
   ]
 })
 
