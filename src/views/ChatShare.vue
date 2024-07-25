@@ -26,20 +26,52 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue';
+import { ref, reactive, onMounted } from 'vue';
 import { genStore } from '@/stores/genStore';
 import { useRoute  } from 'vue-router';
 import { ElLoading } from 'element-plus';
 import { initMsgs, wrapperCustomMsg, appendMsg } from '@/utils/msg';
 
 let route = useRoute();
+let id = '';
 console.log(route.params.id);
-let imgUrl = reactive('');
-let prompt = reactive('');
+let imgUrl = ref('');
+let prompt = ref('');
 let msgList = reactive([]);
-let chatContent = reactive('');
 initMsgs.map(item => msgList.push(item));
 console.log('msgList:', msgList);
+
+const getShare = () => {
+	fetch('/api/share-get', {
+	  method: 'POST',
+	  headers: {
+	    'Content-Type': 'application/json',
+	  },
+	  body: JSON.stringify({ id }),
+	})
+	  .then((response) => response.json())
+	  .then((data) => {
+	    console.log('Success:', data);
+	    let { img, messages} = data.data;
+		imgUrl.value = img;
+		if(messages.length > 0) {
+			msgList = JSON.parse(messages);
+		}
+		prompt.value = data.data.prompt;
+		console.log('prompt:', prompt);
+	  })
+	  .catch((error) => {
+	    console.error('Error:', error);
+	  });
+}
+
+onMounted(() => {
+	id = route.params.id;
+	if(!id) {
+		return
+	}
+	getShare();
+})
 </script>
 
 <style>
@@ -69,7 +101,7 @@ console.log('msgList:', msgList);
 		opacity: 60%;
 	}
 	.chat-dream-name {
-		margin-top: 10px;
+		margin-top: 30px;
 		padding: 0 6vw;
 		color: white;
 		word-wrap:break-word;
