@@ -1,9 +1,9 @@
 <template>
   <div class="jour-page">
-	<PicGallery @pic-selected="$router.push('./tour')"/>
-	<div class="jour-page-bottom">
+	<PicGallery/>
+	<!-- <div class="jour-page-bottom">
 		<input class="jour-page-input" placeholder="Chat with dreamystery"/>
-	</div>
+	</div> -->
   </div>
 </template>
 

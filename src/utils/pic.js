@@ -1,0 +1,1 @@
+export const defaultPic = 'https://pic.52112.com/180128/Unicorns/Afb0IIfm0u.jpg'

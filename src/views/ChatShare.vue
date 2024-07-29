@@ -29,7 +29,7 @@
 import { ref, reactive, onMounted } from 'vue';
 import { genStore } from '@/stores/genStore';
 import { useRoute  } from 'vue-router';
-import { ElLoading } from 'element-plus';
+import { ElLoading, messageConfig } from 'element-plus';
 import { initMsgs, wrapperCustomMsg, appendMsg } from '@/utils/msg';
 
 let route = useRoute();

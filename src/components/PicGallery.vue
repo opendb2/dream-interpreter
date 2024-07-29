@@ -1,18 +1,73 @@
 <script setup>
-	import { reactive } from 'vue'
-	const imgList = ['https://pic.52112.com/180128/Unicorns/Afb0IIfm0u.jpg','https://pic.52112.com/180128/Unicorns/Afb0IIfm0u.jpg','https://pic.52112.com/180128/Unicorns/Afb0IIfm0u.jpg','https://pic.52112.com/180128/Unicorns/Afb0IIfm0u.jpg','https://pic.52112.com/180128/Unicorns/Afb0IIfm0u.jpg']
-	let curList = reactive([])
-	const cur = 0
-	curList = [].concat(imgList);
-	console.log('curList:', curList);
+	import { ref, reactive, computed } from 'vue';
+	import { defaultPic } from '@/utils/pic';
+	import { ElNotification } from 'element-plus';
+	import { useRouter } from 'vue-router';
+	
+	const defaultImgList = [defaultPic, defaultPic, defaultPic, defaultPic, defaultPic];
+	const resList = reactive([]);
+	const cur = ref(0);
+	const router = useRouter();
+	
+	var showList = computed(() => {
+		if(cur.value == 0) {
+			return ['', ''].concat(resList.slice(0, 3));
+		}
+		if(cur.value == 1) {
+			return [''].concat(resList.slice(0, 4));
+		}
+		return [].concat(resList.slice(cur-2, cur+3));
+	});
+	
+	const curId = () => {
+		return resList[cur.value].id;
+	}
+	
+	const backward = () => {
+		if(cur.value == 0) {
+			ElNotification({
+			    title: '',
+			    message: 'It is the first dream!',
+			    type: 'success',
+			})
+			return 
+		}
+		cur.value -= 1;
+	}
+	
+	const forward = () => {
+		if(cur.value >= resList.length - 1) {
+			ElNotification({
+			    title: '',
+			    message: 'It is the last dream!',
+			    type: 'success',
+			})
+			return 
+		}
+		cur.value += 1;
+	}
+	
+	fetch('/api/share-list', {
+	  method: 'GET',
+	  headers: {
+	    'Content-Type': 'application/json',
+	  },
+	})
+	  .then((response) => response.json())
+	  .then((data) => {
+		data.data.list.map(item => resList.push(item));
+	  })
+	  .catch((error) => {
+	    console.error('Error:', error);
+	  });
 </script>
 
 <template>
 	<div class="cmp-pic-gallery">
 		<div class="pic-gallery-list">
-			<div class="pic-gallery-forward"></div>
-			<img @click="$emit('pic-selected')" :class="['gallery-pic', 'pic-'+index]" v-for="(src, index) in curList" :src="src" v-show="!!src" />
-			<div class="pic-gallery-backward"></div>
+			<div class="pic-gallery-forward" @click="backward"></div>
+			<img @click="() => {$emit('pic-selected'); router.push(`./share/${curId()}`)}" :class="['gallery-pic', 'pic-'+index]" v-for="(src, index) in showList" :src="src" v-show="!!src" />
+			<div class="pic-gallery-backward" @click="forward"></div>
 		</div>
 	</div>
 </template>

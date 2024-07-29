@@ -77,6 +77,8 @@ let chatContent = reactive('');
 let dreamId = reactive(-1);
 let shareDialog = reactive({show: false, shareUrl: ''})
 initMsgs.map(item => msgList.push(item));
+// 添加默认聊天内容 prompt
+msgList.push(appendMsg(wrapperCustomMsg(promote)));
 console.log('msgList:', msgList);
 console.log(router.getRoutes());
 const send = () => {
