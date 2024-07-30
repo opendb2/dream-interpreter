@@ -11,12 +11,20 @@
 	
 	var showList = computed(() => {
 		if(cur.value == 0) {
-			return ['', ''].concat(resList.slice(0, 3));
+			return [{}, {}].concat(resList.slice(0, 3));
 		}
 		if(cur.value == 1) {
-			return [''].concat(resList.slice(0, 4));
+			return [{}].concat(resList.slice(0, 4));
 		}
-		return [].concat(resList.slice(cur-2, cur+3));
+		console.log(resList);
+		let curList = [].concat(resList.slice(cur.value-2, cur.value+3));
+		// 不足 5 张图片，用空白补全
+		if(curList.length < 5) {
+			for(let i = curList.length; i<5; i++) {
+				curList.push({});
+			}
+		}
+		return curList;
 	});
 	
 	const curId = () => {
@@ -66,7 +74,9 @@
 	<div class="cmp-pic-gallery">
 		<div class="pic-gallery-list">
 			<div class="pic-gallery-forward" @click="backward"></div>
-			<img @click="() => {$emit('pic-selected'); router.push(`./share/${curId()}`)}" :class="['gallery-pic', 'pic-'+index]" v-for="(src, index) in showList" :src="src" v-show="!!src" />
+			<div v-for="(item, index) in showList" :class="['gallery-pic-wrapper', 'pic-'+index]">
+				<img @click="() => {$emit('pic-selected'); router.push(`./share/${curId()}`)}" :class="['gallery-pic', 'pic-'+index]"  :src="item.img" v-show="!!item.img" />
+			</div>
 			<div class="pic-gallery-backward" @click="forward"></div>
 		</div>
 	</div>
@@ -81,10 +91,15 @@
 		justify-content: center;
 		position: relative;
 	}
-	.gallery-pic {
+	.gallery-pic-wrapper {
 		height: 50vh;
 		width: 30vh;
 		margin: 20px;
+		box-shadow: none;
+	}
+	.gallery-pic {
+		height: 50vh;
+		width: 30vh;
 		border-radius: 3vh;
 		box-shadow: 0 0 1vh 1vh #351C69;
 	}

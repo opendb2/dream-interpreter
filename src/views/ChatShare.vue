@@ -7,15 +7,15 @@
 	<div class="chat-page-right">
 		<div class="chat-page-messages">
 			<div v-for="item in msgList">
-				<div v-if="item.Role == 'assistant'" class="chat-content chat-assistant">
+				<div v-if="item.role == 'assistant'" class="chat-content chat-assistant">
 					<img class="chat-icon" src="../assets/home-illustration 1.png"/>
 					<div class="chat-msg">
-						{{item.Content}}
+						{{item.content}}
 					</div>
 				</div>	
-				<div v-if="item.Role == 'user'" class="chat-content chat-user">
+				<div v-if="item.role == 'user'" class="chat-content chat-user">
 					<div class="chat-msg">
-						{{item.Content}}
+						{{item.content}}
 					</div>
 					<img class="chat-icon" src="../assets/home-illustration 2.png"/>
 				</div>
