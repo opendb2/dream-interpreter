@@ -17,9 +17,12 @@
           <div v-if="item.role == 'assistant'" class="chat-content chat-assistant">
             <img class="chat-icon" src="../assets/chatbot.png" />
             <div class="chat-msg">{{ item.content }}</div>
+			<div class="chat-icon"></div>
           </div>
           <div v-if="item.role == 'user'" class="chat-content chat-user">
+			<div class="chat-icon"></div>  
             <div class="chat-msg">{{ item.content }}</div>
+			<img class="chat-icon" src="../assets/logo.png" />
           </div>
         </div>
       </div>
@@ -328,6 +331,7 @@ const save = () => {
   max-width: 100%; /* 设置消息框的最大宽度 */
   font-size: 18px;
   flex: 1;
+  flex-grow: 1;
   color: white;
   padding: 20px 28px; /* 上下16px，左右28px */
   border-radius: 48px; /* 圆角边框 */

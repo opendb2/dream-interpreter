@@ -52,6 +52,9 @@ body {
   margin: 0;
   height: 100%;
 }
+.el-loading-mask .el-loading-spinner {
+	--el-color-primary: white;
+}
 #app {
   height: 100%;
   background-color: #030038;

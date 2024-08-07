@@ -46,7 +46,6 @@ const buttonImage = computed(() => {
 });
 
 const go = () => {
-  console.log('promote:', promote.value);
   if (!promote.value) {
     ElNotification({
       title: 'Warning',

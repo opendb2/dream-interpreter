@@ -124,21 +124,28 @@ onMounted(() => {
   border-radius: 64px; /* Smooth iOS-like rounded corners */
   box-shadow: 0 0 2vh 2vh rgba(53, 28, 105, 0.6);
 }
+.pic-2 {
+	margin: 0 3vw;
+}
 .pic-0 {
   scale: 80%;
   opacity: 80%;
+  margin: 0;
 }
 .pic-4 {
   scale: 80%;
   opacity: 80%;
+  margin: 0;
 }
 .pic-1 {
   scale: 90%;
   opacity: 90%;
+  margin-left: 0;
 }
 .pic-3 {
   scale: 90%;
   opacity: 90%;
+  margin-right: 0;
 }
 .pic-gallery-forward, .pic-gallery-backward {
   position: absolute;
