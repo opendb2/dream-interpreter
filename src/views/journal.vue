@@ -13,7 +13,11 @@ import PicGallery from '@/components/PicGallery.vue'
 
 <style>
 .jour-page {
-	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 90vh; /* 确保父容器占满整个视口高度 */
+	margin-top: -5vh; /* Adjust this value to move the content upwards */
 }
 .jour-page-bottom {
 	display: flex;

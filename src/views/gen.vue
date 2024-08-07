@@ -183,8 +183,8 @@ const handleKeyPress = (event) => {
 .illustraion-3 {
   top: 22vh;
   left: 75vw;
-  width: 12vw;
-  height: 12vw;
+  width: 11vw;
+  height: 11vw;
   background-image: url('../assets/illustraion-3.png');
   background-size: cover;
 }

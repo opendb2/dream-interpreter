@@ -18,7 +18,7 @@ import homeIllustration2 from '../assets/home-illustration 2.png';
 
 const slogans = [
   { slogan: 'I dream of painting', slogan2: 'and then I paint my dream', sub: '-Vincent Van Gogh' },
-  { slogan: 'Everything you can imagine is real', slogan2: 'that we can tell ourselves', sub: '-Pablo Picasso' }
+  { slogan: 'Everything we can dream', slogan2: 'can be real', sub: '-Pablo Picasso' }
 ];
 
 const images = [homeIllustration1, homeIllustration2];
@@ -98,7 +98,7 @@ const handleButtonClick = () => {
 
 .home-slogan-sub {
   font-size: 2vh;
-  color: white;
+  color: #ACA7B9;
   font-family: 'Inter', sans-serif;
   font-weight: 300;
   margin-top: 1rem;
@@ -106,7 +106,7 @@ const handleButtonClick = () => {
 
 @keyframes fadeInImage {
   to {
-    opacity: 0.75; /* 最终状态设置为完全不透明 */
+    opacity: 1; /* 最终状态设置为完全不透明 */
   }
 }
 
@@ -115,7 +115,7 @@ const handleButtonClick = () => {
     opacity: 0;
   }
   100% {
-    opacity: 0.75; /* 最终状态设置为接近完全不透明 */
+    opacity: 1; /* 最终状态设置为接近完全不透明 */
   }
 }
 

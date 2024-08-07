@@ -8,7 +8,7 @@
 		<div class="chat-page-messages">
 			<div v-for="item in msgList">
 				<div v-if="item.role == 'assistant'" class="chat-content chat-assistant">
-					<img class="chat-icon" src="../assets/home-illustration 1.png"/>
+					<img class="chat-icon" src="../assets/chatbot.png"/>
 					<div class="chat-msg">
 						{{item.content}}
 					</div>
@@ -17,10 +17,9 @@
 					<div class="chat-msg">
 						{{item.content}}
 					</div>
-					<img class="chat-icon" src="../assets/home-illustration 2.png"/>
 				</div>
 			</div>
-		</div>>
+		</div>
 	</div>
   </div>
 </template>
@@ -91,9 +90,9 @@ onMounted(() => {
 	}
 	.chat-dream-pic {
 		width: 22vw;
-		height: 26vw;
+		height: 27vw;
 		border-radius: 50%/50%;
-		box-shadow: 0 0 1vh 2vh #351C69;
+		box-shadow: 0 12px 24px rgba(53, 28, 105, 0.6), 0 16px 32px rgba(53, 28, 105, 0.9);
 	}
 	.chat-dream-date {
 		margin-top: 22px;
@@ -102,7 +101,7 @@ onMounted(() => {
 	}
 	.chat-dream-name {
 		margin-top: 30px;
-		padding: 0 6vw;
+		padding: 0 5vw;
 		color: white;
 		word-wrap:break-word;
 		display: flex;
@@ -113,7 +112,6 @@ onMounted(() => {
 		width: 55vw;
 		height: 80vh;
 		overflow-y: auto;
-		border: solid 1px white;
 	}
 	.chat-page-send {
 		position: relative;
@@ -122,7 +120,6 @@ onMounted(() => {
 		justify-content: center;
 		padding-left: 132px;
 		width: 55vw;
-		border: solid 1px white;
 		height: 114px;
 	}
 	.chat-send-input {
@@ -149,12 +146,24 @@ onMounted(() => {
 		align-items: center;
 	}
 	.chat-icon {
-		width: 36px;
-		height: 36px;
+		width: 64px;
+		height: 64px;
 	}
 	.chat-msg {
+		display: inline-block; /* 消息体宽度根据文本内容变化 */
+		max-width: 100%; /* 设置消息框的最大宽度 */
 		font-size: 18px;
 		flex: 1;
 		color: white;
+		padding: 20px 28px; /* 上下16px，左右28px */
+		border-radius: 48px; /* 圆角边框 */
+		box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), /* 外部阴影 */
+            inset 0 0 12px rgba(255, 255, 255, 0.2); /* 内部白色阴影 */
+		border: 1.5px solid rgba(255, 255, 255, 0.3); /* 设置白色边框并调整透明度为 30% */
+		word-wrap: break-word; /* 使长词在必要时换行 */
+		text-shadow: 0px 0px 32px rgba(121, 159, 255, 0.6); /* 添加文字阴影 */
+	}
+	.chat-user {
+		justify-content: flex-end;
 	}
 </style>
