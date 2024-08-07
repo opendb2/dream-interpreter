@@ -19,7 +19,7 @@
 					<div class="chat-msg">
 						{{item.content}}
 					</div>
-					<img class="chat-icon" src="../assets/logo.png" />
+					<img class="chat-icon" src="../assets/user.png" />
 				</div>
 			</div>
 		</div>
