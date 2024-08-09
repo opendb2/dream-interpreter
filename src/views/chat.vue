@@ -22,7 +22,7 @@
           <div v-if="item.role == 'user'" class="chat-content chat-user">
 			<div class="chat-icon"></div>  
             <div class="chat-msg">{{ item.content }}</div>
-			<img class="chat-icon" src="../assets/logo.png" />
+			<img class="chat-icon" src="../assets/user.png" />
           </div>
         </div>
       </div>

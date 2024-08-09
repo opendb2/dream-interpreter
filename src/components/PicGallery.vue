@@ -121,6 +121,7 @@ onMounted(() => {
 .gallery-pic {
   height: 105%;
   width: 105%;
+  object-fit: cover; /* 使用 cover 确保图片按比例缩放填满容器 */
   border-radius: 64px; /* Smooth iOS-like rounded corners */
   box-shadow: 0 0 2vh 2vh rgba(53, 28, 105, 0.6);
 }
@@ -161,11 +162,11 @@ onMounted(() => {
   transition: transform 0.3s ease, opacity 0.3s ease; /* 添加过渡效果 */
 }
 .pic-gallery-forward {
-  right: 12px;
+  right: 0px;
   background-image: url('../assets/next.png');
 }
 .pic-gallery-backward {
-  left: 12px;
+  left: 0px;
   background-image: url('../assets/previous.png');
 }
 .pic-gallery-forward:hover, .pic-gallery-backward:hover {
